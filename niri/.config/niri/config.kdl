@@ -1,0 +1,97 @@
+input {
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+window-rule {
+    match title="Picture-in-Picture"
+    open-floating true
+}
+
+spawn-at-startup "uwsm-app" "--" "hypridle"
+spawn-at-startup "uwsm-app" "--" "mako"
+spawn-at-startup "uwsm-app" "--" "waybar"
+spawn-at-startup "uwsm-app" "--" "fcitx5"
+spawn-at-startup "uwsm-app" "--" "swayosd-server"
+spawn-at-startup "uwsm-app" "--" "elephant"
+spawn-at-startup "uwsm-app" "--" "walker" "--gapplication-service"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+binds {
+    XF86AudioRaiseVolume                                    { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioLowerVolume                                    { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioMute                                           { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute                                        { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86MonBrightnessUp                                     { spawn "swayosd-client" "--brightness" "raise"; }
+    XF86MonBrightnessDown                                   { spawn "swayosd-client" "--brightness" "lower"; }
+
+    Alt+XF86AudioRaiseVolume                                { spawn "swayosd-client" "--output-volume" "+1"; }
+    Alt+XF86AudioLowerVolume                                { spawn "swayosd-client" "--output-volume" "-1"; }
+    Alt+XF86MonBrightnessUp                                 { spawn "swayosd-client" "--brightness" "+1"; }
+    Alt+XF86MonBrightnessDown                               { spawn "swayosd-client" "--brightness" "-1"; }
+
+    XF86AudioNext                                           { spawn "swayosd-client" "--playerctl" "next"; }
+    XF86AudioPause                                          { spawn "swayosd-client" "--playerctl" "play-pause"; }
+    XF86AudioPlay                                           { spawn "swayosd-client" "--playerctl" "play-pause"; }
+    XF86AudioPrev                                           { spawn "swayosd-client" "--playerctl" "previous"; }
+
+    Mod+Q                                                   { close-window; }
+    Mod+V                                                   { toggle-window-floating; }
+    Mod+F                                                   { maximize-column; }
+    Mod+Shift+F                                             { fullscreen-window; }
+    Mod+Ctrl+F                                              { expand-column-to-available-width; }
+
+    Mod+L                                                   { focus-column-right-or-first; }
+    Mod+H                                                   { focus-column-left-or-last; }
+    Mod+J                                                   { focus-window-down-or-top; }
+    Mod+K                                                   { focus-window-up-or-bottom; }
+    Mod+Shift+H                                             { focus-column-first; }
+    Mod+Shift+L                                             { focus-column-last; }
+
+    Mod+Shift+Left                                          { swap-window-left; }
+    Mod+Shift+Right                                         { swap-window-right; }
+
+    Mod+Tab                                                 { focus-workspace-down; }
+    Mod+Shift+Tab                                           { focus-workspace-up; }
+    Mod+Ctrl+Tab                                            { focus-workspace-previous; }
+
+    Alt+Tab                                                 { focus-window-down-or-column-right; }
+    Alt+Shift+Tab                                           { focus-window-up-or-column-left; }
+    Alt+Ctrl+Tab                                            { focus-column-right-or-first; }
+
+    Mod+1                                                   { focus-workspace 1; }
+    Mod+2                                                   { focus-workspace 2; }
+    Mod+3                                                   { focus-workspace 3; }
+    Mod+4                                                   { focus-workspace 4; }
+    Mod+5                                                   { focus-workspace 5; }
+    Mod+6                                                   { focus-workspace 6; }
+    Mod+7                                                   { focus-workspace 7; }
+    Mod+8                                                   { focus-workspace 8; }
+    Mod+9                                                   { focus-workspace 9; }
+    Mod+0                                                   { focus-workspace 10; }
+
+    Mod+Ctrl+1                                              { move-window-to-workspace 1; }
+    Mod+Ctrl+2                                              { move-window-to-workspace 2; }
+    Mod+Ctrl+3                                              { move-window-to-workspace 3; }
+    Mod+Ctrl+4                                              { move-window-to-workspace 4; }
+    Mod+Ctrl+5                                              { move-window-to-workspace 5; }
+    Mod+Ctrl+6                                              { move-window-to-workspace 6; }
+    Mod+Ctrl+7                                              { move-window-to-workspace 7; }
+    Mod+Ctrl+8                                              { move-window-to-workspace 8; }
+    Mod+Ctrl+9                                              { move-window-to-workspace 9; }
+    Mod+Ctrl+0                                              { move-window-to-workspace 10; }
+
+    Mod+Alt+L                                               { set-column-width "+100"; }
+    Mod+Alt+H                                               { set-column-width "-100"; }
+    Mod+Alt+K                                               { set-window-height "+100"; }
+    Mod+Alt+J                                               { set-window-height "-100"; }
+
+    Mod+C                                                   { consume-or-expel-window-right; }
+    Mod+X                                                   { consume-or-expel-window-left; }
+
+    Mod+Return                                              { spawn "alacritty"; }
+    Alt+Space                                               { spawn-sh "walker --width 644 --maxheight 300 --minheight 300 \"$argv\""; }
+    Mod+E                                                   { spawn-sh "walker --width 644 --maxheight 300 --minheight 300 \"$argv\" -m symbols"; }
+}
