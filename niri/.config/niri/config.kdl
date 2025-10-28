@@ -5,18 +5,30 @@ input {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+    dnd-edge-view-scroll {
+        trigger-width 100
+        max-speed 3000
+    }
+    dnd-edge-workspace-switch {
+        trigger-height 100
+        max-speed 3000
+    }
+}
+
 window-rule {
     match title="Picture-in-Picture"
     open-floating true
 }
 
-spawn-at-startup "uwsm-app" "--" "hypridle"
-spawn-at-startup "uwsm-app" "--" "mako"
-spawn-at-startup "uwsm-app" "--" "waybar"
-spawn-at-startup "uwsm-app" "--" "fcitx5"
-spawn-at-startup "uwsm-app" "--" "swayosd-server"
-spawn-at-startup "uwsm-app" "--" "elephant"
-spawn-at-startup "uwsm-app" "--" "walker" "--gapplication-service"
+spawn-at-startup "hypridle"
+spawn-at-startup "mako"
+spawn-at-startup "waybar"
+spawn-at-startup "fcitx5"
+spawn-at-startup "swayosd-server"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 binds {
@@ -91,7 +103,10 @@ binds {
     Mod+C                                                   { consume-or-expel-window-right; }
     Mod+X                                                   { consume-or-expel-window-left; }
 
+    Mod+T                                                   { spawn-sh "bluetoothctl connect 41:42:FF:95:43:BC"; }
+    Mod+Shift+T                                             { spawn-sh "bluetoothctl disconnect"; }
+
     Mod+Return                                              { spawn "alacritty"; }
-    Alt+Space                                               { spawn-sh "walker --width 644 --maxheight 300 --minheight 300 \"$argv\""; }
-    Mod+E                                                   { spawn-sh "walker --width 644 --maxheight 300 --minheight 300 \"$argv\" -m symbols"; }
+    Alt+Space                                               { spawn "fuzzel"; }
+    Mod+E                                                   { spawn "nautilus"; }
 }

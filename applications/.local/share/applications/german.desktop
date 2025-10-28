@@ -4,7 +4,7 @@ Name=German
 StartupNotify=true
 StartupWMClass=german
 TryExec=brave
-Exec=/usr/bin/brave --enable-features=TouchpadOverscrollHistoryNavigation,UseOzonePlatform --ozone-platform=wayland --profile-directory=german
+Exec=brave --enable-features=TouchpadOverscrollHistoryNavigation,UseOzonePlatform --ozone-platform=wayland --profile-directory=german
 Terminal=false
 Icon=/home/doctor/.local/share/icons/german.png
 Type=Application
